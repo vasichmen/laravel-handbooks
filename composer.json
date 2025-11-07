@@ -1,0 +1,19 @@
+{
+  "name": "vasichmen/laravel-handbooks",
+  "description": "Package Handbooks",
+  "require": {
+    "php": "^8.4",
+    "ext-json": "*",
+    "laravel/framework": "^12.0",
+    "vasichmen/laravel-foundation": "^2.0"
+  },
+  "license": "MIT",
+  "minimum-stability": "stable",
+  "autoload": {
+    "psr-4": {
+      "Laravel\\Handbooks\\": [
+        "src/"
+      ]
+    }
+  }
+}
