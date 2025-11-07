@@ -3,13 +3,13 @@
 * установить пакет
 
 ```shell
- composer require ippu/handbooks
+ composer require vasichmen/laravel-handbooks
 ```
 
-* подключить `\IPPU\Handbooks\IppuHandbooksServiceProvider::class` в `config\app.php`
+* подключить `\Laravel\Handbooks\LaravelHandbooksServiceProvider::class` в `config\app.php`
 * опубликовать конфиг
 ```shell
-php artisan vendor:publish --provider="IPPU\Handbooks\IppuHandbooksServiceProvider"
+php artisan vendor:publish --provider="Laravel\Handbooks\LaravelHandbooksServiceProvider"
 ```
 * заполнить заготовку конфига `handbooks.php`. 
     
@@ -20,10 +20,10 @@ php artisan vendor:publish --provider="IPPU\Handbooks\IppuHandbooksServiceProvid
     'global_middleware' => ['user-auth', 'local-auth'],
     'defaults' => [
         'middleware' => [
-            'create' => [PermissionCodeEnum::ManageHandbooks->middleware()], //мидлвары для создания по умолчанию, например can:manage_handbooks
-            'update' => [PermissionCodeEnum::ManageHandbooks->middleware()], //мидлвары для обновления по умолчанию, например can:manage_handbooks
-            'delete' => [PermissionCodeEnum::ManageHandbooks->middleware()], //мидлвары для удаления по умолчанию, например can:manage_handbooks
-            'view' => [PermissionCodeEnum::ViewHandbooks->middleware()], //мидлвары для просмотра по умолчанию, например can:manage_handbooks
+            'create' => ['can-create'], //мидлвары для создания по умолчанию, например can:manage_handbooks
+            'update' => ['can-update'], //мидлвары для обновления по умолчанию, например can:manage_handbooks
+            'delete' => ['can-delete'], //мидлвары для удаления по умолчанию, например can:manage_handbooks
+            'view' => ['can-view'], //мидлвары для просмотра по умолчанию, например can:manage_handbooks
         ],
     ],
     'dynamic' => [
@@ -105,4 +105,3 @@ class UpdateFunctionalAreaRequest extends CreateFunctionalAreaRequest
 }
 ```
 * Если в проекте используются кастомные связи BelongsToMany, то такие связи могут реализовать интерфейс [ProvidesUniqueRelatedKeys](src/ProvidesUniqueRelatedKeys.php). 
-Пример такой реализации: https://git.ds.ecpk.sibintek.ru/project/ippu/dev/ukita-service/-/blob/master/app/Models/Relations/EntityArchitectsRelation.php?ref_type=heads
